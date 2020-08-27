@@ -1,0 +1,14 @@
+<div class="book-card">
+    <a (click)="getBookDetails(bookData.id)">
+        <img src="assets/images/{{bookData.id}}.jpg" class="img-responsive book-card-img" alt="book img">
+    </a>
+
+    <div class="book-description">
+        <h4>{{bookData.title}}</h4>
+        <div class="book-author">{{bookData.author}}</div>
+        <div>{{bookData.publisher}}</div>
+        <div class="book-card-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molest.
+        </div>
+    </div>
+</div>
