@@ -1,0 +1,18 @@
+<div fxFlex="60%" fxFlexOffset="10%" [formGroup]="publisherForm.form">
+    <div fxLayout="row">
+        <div fxFlex="50%">
+            <mat-form-field class="full-width">
+                <input matInput formControlName="name" placeholder="* Name" />
+                <mat-error *ngIf="publisherForm.name.hasError('required')">
+                    {{ getErrorMessage('required') }}
+                </mat-error>
+                <mat-error *ngIf="publisherForm.name.touched && paymentForm.name.hasError('textValidator')">
+                    {{ getErrorMessage('lettersOnly') }}
+                </mat-error>
+                <mat-error *ngIf="publisherForm.name.touched && paymentForm.name.hasError('maxLength')">
+                    {{ getErrorMessage('maxlength') }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+</div>

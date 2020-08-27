@@ -1,0 +1,62 @@
+<!-- <input type="text" class="filter-input" placeholder="Wyszukaj tytuł, autora..." (keyup)="searchBooks($event)" /> -->
+
+<mat-form-field appearance="legacy">
+    <!-- <mat-label>Legacy form field</mat-label> -->
+    <input matInput placeholder="Wyszukaj tytuł, autora...">
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <mat-hint>Hint</mat-hint>
+</mat-form-field>
+
+<div class="book-section" *ngIf="popularBooks">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">
+                    <span>Najbardziej popularne</span>
+                </h2>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.3s" *ngFor="let popularBook of popularBooks;">
+                <app-book-card [bookData]="popularBook"></app-book-card>
+
+                <!-- <div class="book-card">
+                    <a (click)="getDetails(popularBook)">
+                        <img src="assets/images/{{popularBook.id}}.jpg" class="img-responsive book-card-img" alt="book img">
+                    </a>
+                    <div class="book-description">
+                        <h4>{{popularBook.title}}</h4>
+                        <div class="book-author">{{popularBook.author}}</div>
+                        <div>{{popularBook.publisher}}</div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molest.</p>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="book-section" *ngIf="latestBooks">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="wow bounceIn section-title" data-wow-offset="50" data-wow-delay="0.3s">
+                    <span>Ostatnie propozycje</span>
+                </h2>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.3s" *ngFor="let latestBook of latestBooks;">
+                <app-book-card [bookData]="latestBook"></app-book-card>
+                <!--    <div class="book-wrapper">
+                    <img src="assets/images/{{latestBook.id}}.jpg" class="img-responsive book-card-img" alt="team img 1">
+                    <div class="book-des">
+                        <h4>{{latestBook.title}}</h4>
+                        <div class="book-author">{{latestBook.author}}</div>
+                        <div>{{latestBook.publisher}}</div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molest.</p>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
