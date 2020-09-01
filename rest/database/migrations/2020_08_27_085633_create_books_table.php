@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->integer('id_author');
             $table->integer('id_genre');
             $table->integer('id_publisher');
-            $table->float('rate', 1, 1)->nullable();
+            $table->decimal('rate', 2, 1)->nullable();
             $table->integer('votes')->nullable();
             $table->string('cover', 50)->nullable();
             $table->timestamps();
