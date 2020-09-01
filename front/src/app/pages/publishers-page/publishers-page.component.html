@@ -15,9 +15,7 @@
     <tbody>
         <tr *ngFor="let publisher of tableData ">
             <td>
-                <a href="javascript:void(0)" (click)="publisherDetails(publisher.id)" title="pokaż szczegóły">
                   {{ publisher.name }}
-                </a>
             </td>
             <td>
                 <a href="javascript:void(0)" (click)="openModal(publisher)" title="edycja">
