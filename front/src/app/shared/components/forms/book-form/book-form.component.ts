@@ -41,9 +41,7 @@ export class BookFormComponent extends BaseComponent implements OnInit, OnChange
   }
 
   ngOnInit() {
-
     this.getData();
-    // this.getBookData(id);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -65,7 +63,6 @@ export class BookFormComponent extends BaseComponent implements OnInit, OnChange
 
   private getData() {
     this.getListData().subscribe(data => {
-      console.log(data);
       this.authorsList = data[0].data.attributes;
       this.genresList = data[1].data.attributes;
       this.publishersList = data[2].data.attributes;
@@ -100,7 +97,6 @@ export class BookFormComponent extends BaseComponent implements OnInit, OnChange
 
     if (this.bookForm.form.valid) {
       const formData = this.bookForm.form.getRawValue();
-      console.log(formData);
       if (this.bookId) {
         this.booksService.update(this.bookId, formData).pipe(
           tap(
