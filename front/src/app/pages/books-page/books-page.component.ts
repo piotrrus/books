@@ -40,7 +40,17 @@ export class BooksPageComponent implements OnInit {
       .subscribe();
   }
 
-  openModal(formData?: any) {
+  public updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+    this.tableData = this.temp.filter(d => (
+      (d.title.toLowerCase().indexOf(val) !== -1)
+      || (d.author.toLowerCase().indexOf(val) !== -1)
+      || (d.publisher.toLowerCase().indexOf(val) !== -1)
+      || (d.genre.toLowerCase().indexOf(val) !== -1)
+    ));
+  }
+  
+  public openModal(formData?: any) {
     const initialState = {
       formData: formData ? formData : null,
       title: formData ? 'Edytuj książkę' : 'Dodaj książkę',
