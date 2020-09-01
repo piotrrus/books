@@ -18,7 +18,7 @@
     <tbody>
         <tr *ngFor="let book of tableData ">
             <td>
-                <a routerLink="/book/show/{{ book.id }} " class="table-link " title="pokaż szczegóły ">
+                <a routerLink="/book/{{ book.id }} " class="table-link " title="pokaż szczegóły ">
                    {{book.title}}
                 </a>
             </td>
