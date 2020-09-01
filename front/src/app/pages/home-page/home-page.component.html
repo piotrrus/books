@@ -24,7 +24,7 @@
             </div>
 
             <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.3s" *ngFor="let latestBook of latestBooks;">
-                <app-book-card [bookData]="latestBook"></app-book-card>
+                <app-book-card [bookData]="latestBook" (bookChosen)="onBookClicked($event)"></app-book-card>
             </div>
         </div>
     </div>
