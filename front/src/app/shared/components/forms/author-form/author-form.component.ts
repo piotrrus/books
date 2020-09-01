@@ -42,7 +42,6 @@ export class AuthorFormComponent extends BaseComponent implements OnInit, OnChan
   }
 
   private setValues(authorData) {
-    console.log(authorData);
     this.authorForm.name.setValue(authorData.name);
     if (authorData.id) {
       this.authorId = authorData.id;
@@ -54,7 +53,6 @@ export class AuthorFormComponent extends BaseComponent implements OnInit, OnChan
 
     if (this.authorForm.form.valid) {
       const formData = this.authorForm.form.getRawValue();
-      console.log(formData);
       if (this.authorId) {
         this.authorsService.update(this.authorId, formData).pipe(
           tap(
@@ -82,10 +80,10 @@ export class AuthorFormComponent extends BaseComponent implements OnInit, OnChan
   showMessage(mode) {
     if (mode === dbOptions.ADD) {
       console.log('added', mode);
-      this.toastr.info('New author has been added');
+      // this.toastr.info('New author has been added');
     } else if (mode === dbOptions.UPDATE) {
       console.log('updated', mode);
-      this.toastr.info('The author data has been modified');
+      // this.toastr.info('The author data has been modified');
     }
   }
 
