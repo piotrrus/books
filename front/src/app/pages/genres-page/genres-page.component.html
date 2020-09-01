@@ -14,9 +14,7 @@
     <tbody>
         <tr *ngFor="let genre of tableData ">
             <td>
-                <a routerLink="/genre/{{ genre.id }} " class="table-link " title="edycja i szczegóły ">
-                   {{genre.name}}
-                </a>
+                {{genre.name}}
             </td>
             <td>
                 <a href="javascript:void(0)" (click)="openModal(genre)" title="edycja">
