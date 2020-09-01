@@ -1,1 +1,70 @@
-<p>book-form works!</p>
+<div fxFlex="60%" fxFlexOffset="10%" [formGroup]="bookForm.form">
+    <div fxLayout="row">
+        <div fxFlex="100%">
+            <mat-form-field class="full-width">
+                <input matInput formControlName="title" placeholder="* Tytuł" trim appUpperFirst/>
+                <mat-error *ngIf="bookForm.title.hasError('required')">
+                    {{ getErrorMessage('required') }}
+                </mat-error>
+                <!-- <mat-error *ngIf="authorForm.name.touched && authorForm.name.hasError('textValidator')">
+                    {{ getErrorMessage('lettersOnly') }}
+                </mat-error> -->
+                <mat-error *ngIf="bookForm.title.touched && bookForm.title.hasError('maxlength')">
+                    {{ getErrorMessage('maxlength') }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div fxLayout="row">
+        <div fxFlex="100%">
+            <mat-form-field class="full-width" z-index=9999>
+                <mat-select formControlName="id_author" placeholder="Wybierz autora">
+                    <mat-option *ngFor="let author of authorsList" [value]="author.id">
+                        {{ author.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bookForm.id_author.hasError('required')">
+                    {{ getErrorMessage('required') }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div fxLayout="row">
+        <div fxFlex="100%">
+            <mat-form-field class="full-width" z-index=9999>
+                <mat-select formControlName="id_genre" placeholder="Wybierz gatunek">
+                    <mat-option *ngFor="let genre of genresList" [value]="genre.id">
+                        {{ genre.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bookForm.id_genre.hasError('required')">
+                    {{ getErrorMessage('required') }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div fxLayout="row">
+        <div fxFlex="100%">
+            <mat-form-field class="full-width">
+                <mat-select formControlName="id_publisher" placeholder="Wybierz wydawcę">
+                    <mat-option *ngFor="let publisher of publishersList" [value]="publisher.id">
+                        {{ publisher.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bookForm.id_publisher.hasError('required')">
+                    {{ getErrorMessage('required') }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxLayout="row" class="form-btn">
+        <div fxFlex="100%">
+            <button mat-raised-button class="right" [disabled]="!bookForm.form.valid" (click)="writeData()" color="primary">
+                        Zapisz
+            </button>
+        </div>
+    </div>
+</div>

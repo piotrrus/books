@@ -11,6 +11,11 @@ class Publishers extends Model implements CrudInterface
 {
     protected $table = 'publishers';
 
+    public function books()
+    {
+        return $this->hasMany(Books::class);
+    }
+
     public static function getAll()
     {
         //return $this->hasMany('App\Book', 'book_author_id', 'author_id');
@@ -43,7 +48,7 @@ class Publishers extends Model implements CrudInterface
     public static function updateIt(int $id, array $input)
     {
         $publishers = Publishers::find($id);
-        self::saveIt($input, $authors);
+        self::saveIt($input, $publishers);
     }
 
     private static function saveIt(array $input, $model)

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller as Controller;
 
 class BaseController extends Controller
 {
@@ -67,7 +67,7 @@ class BaseController extends Controller
      *
      * @return json \Illuminate\Http\Response
      */
-    private function sendResponse($result, $type)
+    public function sendResponse($result, $type)
     {
         $response = [
             'success' => true,
@@ -85,7 +85,7 @@ class BaseController extends Controller
      * @param type $code
      * @return json \Illuminate\Http\Response
      */
-    private function sendError(string $error, $errorMessages = [], $code = 404)
+    public function sendError(string $error, $errorMessages = [], $code = 404)
     {
         $response = [
             'success' => false,

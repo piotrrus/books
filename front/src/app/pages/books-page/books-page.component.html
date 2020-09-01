@@ -1,3 +1,38 @@
-<!-- <app-books-table [tableData]="tableData"></app-books-table> -->
+<div class="row filter-dropdowns-group ">
+    <div class="col-10 ">
+        <h3>Lista książek: {{ dataLength }} pozycji</h3>
+    </div>
+    <div class="col-2 ">
+        <div class="button-row ">
+            <div fxFlex="100 " fxLayoutGap="10px ">
+                <a class="add-link" href="javascript:void(0)" (click)="openModal( )">Dodaj książkę</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>Books </p>
+<table class="table">
+    <tbody>
+        <tr *ngFor="let book of tableData ">
+            <td>
+                <a href="javascript:void(0)" (click)="bookDetails(book.id)" title="pokaż szczegóły">
+                  {{ book.title }}
+                </a>
+            </td>
+            <td>
+                {{ book.author }}
+            </td>
+            <td>
+                {{ book.publisher }}
+            </td>
+            <td>
+                {{ book.genre }}
+            </td>
+            <td>
+                <a href="javascript:void(0)" (click)="openModal(book)" title="edycja">
+                  edycja
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

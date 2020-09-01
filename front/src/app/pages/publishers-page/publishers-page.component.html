@@ -1,19 +1,29 @@
-<h2>Lista wydawców</h2>
-
-<div class="example-container mat-elevation-z2">
-    <div class="example-header">
-        <ngx-datatable [columnMode]="ColumnMode.force" class="material" [rows]="tableData" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10">
-
-            <ngx-datatable-column name="Dostawca" prop="name" [width]="50">
-                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                    <a href="javascript:void(0)" (click)="publisherDetails(row)" title="pokaż szczegóły">
-                      {{ value }}
-                    </a>
-                    <!-- <a routerLink="/contractor/{{ row['id'] }}" mat-button color="accent" title="pokaż szczegóły">
-          {{ value }}
-        </a> -->
-                </ng-template>
-            </ngx-datatable-column>
-        </ngx-datatable>
+<div class="row filter-dropdowns-group ">
+    <div class="col-10 ">
+        <h3>Lista wydawców: {{ dataLength }} pozycji</h3>
+    </div>
+    <div class="col-2 ">
+        <div class="button-row ">
+            <div fxFlex="100 " fxLayoutGap="10px ">
+                <a class="add-link" href="javascript:void(0)" (click)="openModal( )">Dodaj wydawcę</a>
+            </div>
+        </div>
     </div>
 </div>
+
+<table class="table">
+    <tbody>
+        <tr *ngFor="let publisher of tableData ">
+            <td>
+                <a href="javascript:void(0)" (click)="publisherDetails(publisher.id)" title="pokaż szczegóły">
+                  {{ publisher.name }}
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" (click)="openModal(publisher)" title="edycja">
+                  edycja
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

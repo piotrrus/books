@@ -1,5 +1,31 @@
-<p>book-details-page works!</p>
-<div class="row">
-    <div class="col-4">col-4</div>
-    <div class="col-8">col-8</div>
+<div class="book-card" *ngIf="bookData">
+    <div class="row">
+        <div class="col-4">
+            <img src="assets/images/{{bookData.id}}.jpg" class="img-responsive book-card-img" alt="book img">
+        </div>
+        <div class="col-8">
+            <h2>{{bookData.title}} - {{bookData.author}}</h2>
+            <p *ngIf="bookData.publisher">Wydawnictwo: {{bookData.publisher}}</p>
+
+            <p>Opis ksiązki</p>
+            <div class="book-card-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+            <div class="book-card-statistic">
+                Liczba ocen: {{bookData.votes}}
+            </div>
+            <div class="book-card-statistic">
+                Ogólna ocena: {{bookData.rate}}
+            </div>
+            <rating [(ngModel)]="bookData.rate" [max]="max"></rating>
+
+            <div class="row buttons">
+                <div class="col-12">
+                    <button type="button" class="btn btn-light"> EDYCJA</button>
+                    <!-- <button type="button" class="btn btn-light"> DODAJ</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

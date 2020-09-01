@@ -11,6 +11,11 @@ class Genres extends Model implements CrudInterface
 {
     protected $table = 'genres';
 
+    public function books()
+    {
+        return $this->hasMany(Books::class);
+    }
+
     public static function getAll()
     {
         return DB::table('genres')

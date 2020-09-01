@@ -1,28 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { PublishersService } from 'src/app/shared/services';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { tap } from 'rxjs/operators';
-import { ColumnMode, SortType } from '@swimlane/ngx-datatable';
+import { ModalHelper } from '../../shared/helpers/modal-helper';
 
 @Component({
   selector: 'app-publishers-page',
   templateUrl: './publishers-page.component.html',
-  styleUrls: ['./publishers-page.component.css']
+  styleUrls: ['./publishers-page.component.scss']
 })
 export class PublishersPageComponent implements OnInit {
 
   public dataLength = 1;
   public tableData: any = [];
   public temp = [];
-
-  ColumnMode = ColumnMode;
-  SortType = SortType;
+  private modalRef: BsModalRef;
+  // modalHelper = new ModalHelper(this.modalService);
 
   constructor(
-    private publishersService: PublishersService
+    private publishersService: PublishersService,
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
     this.getPublishersList();
+    this.modalListener();
   }
 
   private getPublishersList(): void {
@@ -41,6 +44,24 @@ export class PublishersPageComponent implements OnInit {
 
   public publisherDetails(data) {
     console.log(data);
+  }
+
+  openModal(formData?: any) {
+    const initialState = {
+      formData: formData ? formData : null,
+      title: formData ? 'Edytuj wydawcę' : 'Dodaj wydawcę',
+      formName: 'publisher'
+    };
+    console.log(initialState);
+    this.modalRef = this.modalService.show(ModalComponent, { initialState });
+  }
+
+  private modalListener() {
+    this.modalService.onHide
+      .pipe()
+      .subscribe(() => {
+        this.getPublishersList();
+      });
   }
 
 }

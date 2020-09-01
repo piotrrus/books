@@ -1,5 +1,6 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Base } from './Base.form';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { textValidator } from '../validators/custom-text.validator';
 
 export class AuthorForm extends Base {
 
@@ -13,11 +14,11 @@ export class AuthorForm extends Base {
   }
 
   createForm(): FormGroup {
-    this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(30)]]
+    this._form = this.fb.group({
+      name: ['', [Validators.required, Validators.maxLength(30), textValidator]]
     });
 
-    return this.form;
+    return this._form;
   }
 
   get name() {

@@ -1,6 +1,24 @@
-<p>author-details-page works!</p>
+<div class="book-card" *ngIf="authorData">
+    <div class="row">
+        <div class="col-4">
+            <img src="assets/images/head.png" class="img-responsive book-card-img" alt="book img">
+        </div>
+        <div class="col-8">
+            <h2>{{authorData.name}}</h2>
+            <!-- <p *ngIf="authorData.publisher">Wydawnictwo: {{authorData.publisher}}</p> -->
 
-<div class="row">
-    <div class="col-8">col-8</div>
-    <div class="col-4">col-4</div>
+            <p>Autor</p>
+            <div class="book-card-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+
+            <div class="row buttons">
+                <div class="col-12">
+                    <button type="button" class="btn btn-light"> EDYCJA</button>
+                    <!-- <button type="button" class="btn btn-light"> DODAJ</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

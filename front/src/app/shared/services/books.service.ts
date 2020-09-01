@@ -18,15 +18,15 @@ export class BooksService implements IDataService {
   }
 
   public show(id: number): Observable<any> {
-    return this.apiService.get('books/' + id);
+    return this.apiService.get('books/show/' + id);
   }
 
-  public update(id: number): Observable<any> {
-    return this.apiService.get('books/update/' + id);
+  public update(id: number, data): Observable<any> {
+    return this.apiService.post('books/update/' + id, data);
   }
 
   public add(data): Observable<any> {
-    return this.apiService.get('books/add/' + data);
+    return this.apiService.post('books/create/', data);
   }
 
   public delete(id: number): Observable<any> {

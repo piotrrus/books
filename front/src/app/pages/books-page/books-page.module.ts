@@ -5,13 +5,13 @@ import { BooksPageComponent } from './books-page.component';
 import { BooksTableComponent } from './components/books-table/books-table.component';
 import { BooksService } from 'src/app/shared/services';
 
-
 @NgModule({
   declarations: [BooksPageComponent, BooksTableComponent],
   imports: [
     SharedModule,
     RouterModule.forChild([
       { path: '', component: BooksPageComponent },
+      // { path: '/:id', component: BooksPageComponent },
     ])
   ],
   providers: [BooksService],

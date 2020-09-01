@@ -24,7 +24,7 @@ class AuthorsController extends BaseController
     public function show(int $id)
     {
         $authors = Authors::search($id);
-        return $this->response($authors, 'authors');
+        return $this->response($authors, 'Specified author');
     }
 
     /**
@@ -33,11 +33,13 @@ class AuthorsController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AuthorFormRequest $request)
+    public function create(AuthorFormRequest $request)
     {
         $validated = $request->validated();
-        $response  = Authors::insert($validated);
-        return $this->message($response);
+        if ($validated) {
+            $response = Authors::insert($validated);
+            return $this->message($response);
+        }
     }
 
     /**
@@ -50,7 +52,9 @@ class AuthorsController extends BaseController
     public function update(AuthorFormRequest $request, int $id)
     {
         $validated = $request->validated();
-        $response  = Authors::updateIt($id, $validated);
-        return $this->message($response);
+        if ($validated) {
+            $response = Authors::updateIt($id, $validated);
+            return $this->message($response);
+        }
     }
 }

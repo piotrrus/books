@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use DB;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\Interfaces\CrudInterface;
 
@@ -14,8 +14,7 @@ class Authors extends Model implements CrudInterface
 
     public function books()
     {
-        return $this->hasMany(Books::class);
-		//->select('name', 'author_id');
+        return $this->hasMany(Books::class)->select('name');
     }
 
     public static function getAll()
@@ -35,7 +34,7 @@ class Authors extends Model implements CrudInterface
     public static function insert(array $input)
     {
         $authors = new Authors();
-        self::saveIt($input, $authors);
+        return self::saveIt($input, $authors);
     }
 
     public static function updateIt(int $id, array $input)

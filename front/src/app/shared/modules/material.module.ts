@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 // import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule, MatCard } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -30,7 +30,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
-    CommonModule,
+    // CommonModule,
     MatTabsModule,
     MatTableModule,
     MatDialogModule,

@@ -1,7 +1,8 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Base } from './Base.form';
+import { textValidator } from '../validators/custom-text.validator';
 
-export class GenreForm extends Base {
+export class BookForm extends Base {
 
   private _form: FormGroup;
 
@@ -14,29 +15,29 @@ export class GenreForm extends Base {
 
   createForm(): FormGroup {
     this.form = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(30)]],
-      idAuthor: ['', [Validators.required]],
-      idGenre: ['', [Validators.required]],
-      idPublisher: ['', [Validators.required]]
+      title: ['', [Validators.required, Validators.maxLength(30), textValidator]],
+      id_author: ['', [Validators.required]],
+      id_genre: ['', [Validators.required]],
+      id_publisher: ['', [Validators.required]]
     });
 
-    return this.form;
+    return this._form;
   }
 
   get title() {
     return this.form.get('title');
   }
 
-  get idGenre() {
-    return this.form.get('idGenre');
+  get id_genre() {
+    return this.form.get('id_genre');
   }
 
-  get idAuthor() {
-    return this.form.get('idAuthor');
+  get id_author() {
+    return this.form.get('id_author');
   }
 
-  get idPublisher() {
-    return this.form.get('idPublisher');
+  get id_publisher() {
+    return this.form.get('id_publisher');
   }
 
   get form(): FormGroup {

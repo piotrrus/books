@@ -14,14 +14,19 @@ const routes: Routes = [
   },
   {
     path: 'authors',
-    // component: AuthorsPageComponent
     loadChildren: () => import('../../pages/authors-page/authors-page.module').then(m => m.AuthorsPageModule),
-    // canActivate: [AdminGuard]
+  },
+  {
+    path: 'author/:id',
+    loadChildren: () => import('../../pages/author-details-page/author-details-page.module').then(m => m.AuthorDetailsPageModule),
   },
   {
     path: 'books',
     loadChildren: () => import('../../pages/books-page/books-page.module').then(m => m.BooksPageModule),
-    // canActivate: [AdminGuard]
+  },
+  {
+    path: 'book/:id',
+    loadChildren: () => import('../../pages/book-details-page/book-details-page.module').then(m => m.BookDetailsPageModule),
   },
   {
     path: 'genres',

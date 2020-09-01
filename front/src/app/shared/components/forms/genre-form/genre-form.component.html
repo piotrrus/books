@@ -1,1 +1,25 @@
-<p>genre-form works!</p>
+<div fxFlex="90%" fxFlexOffset="10%" [formGroup]="genreForm.form">
+    <div fxLayout="row">
+        <div fxFlex="100%">
+            <mat-form-field class="full-width">
+                <input matInput formControlName="name" placeholder="* Nazwa kategorii" trim appUpperFirst/>
+                <mat-error *ngIf="genreForm.name.hasError('required')">
+                    {{ getErrorMessage('required') }}
+                </mat-error>
+                <mat-error *ngIf="genreForm.name.touched && genreForm.name.hasError('textValidator')">
+                    {{ getErrorMessage('lettersOnly') }}
+                </mat-error>
+                <mat-error *ngIf="genreForm.name.touched && genreForm.name.hasError('maxlength')">
+                    {{ getErrorMessage('maxlength') }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxLayout="row" class="form-btn">
+        <div fxFlex="100%">
+            <button mat-raised-button class="right" [disabled]="!genreForm.form.valid" (click)="writeData()" color="primary">
+              Zapisz
+            </button>
+        </div>
+    </div>
+</div>

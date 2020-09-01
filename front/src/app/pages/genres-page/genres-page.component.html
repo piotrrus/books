@@ -1,1 +1,28 @@
-<p>genres-page works!</p>
+<div class="row filter-dropdowns-group ">
+    <div class="col-10 ">
+        <h3>Lista gatunków: {{ dataLength }} pozycji</h3>
+    </div>
+    <div class="col-2 ">
+        <div class="button-row ">
+            <div fxFlex="100 " fxLayoutGap="10px ">
+                <a class="add-link" href="javascript:void(0)" (click)="openModal( )">Dodaj kategorię</a>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <tbody>
+        <tr *ngFor="let genre of tableData ">
+            <td>
+                <a routerLink="/genre/{{ genre.id }} " class="table-link " title="edycja i szczegóły ">
+                   {{genre.name}}
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" (click)="openModal(genre)" title="edycja">
+                  edycja
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

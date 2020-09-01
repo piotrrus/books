@@ -1,18 +1,26 @@
-<div fxFlex="60%" fxFlexOffset="10%" [formGroup]="authorForm.form">
+<div fxFlex="90%" fxFlexOffset="10%" [formGroup]="authorForm.form">
+    <input type="hidden" value="authorForm.id">
     <div fxLayout="row">
-        <div fxFlex="50%">
+        <div fxFlex="100%">
             <mat-form-field class="full-width">
-                <input matInput formControlName="name" placeholder="* Name" />
+                <input matInput formControlName="name" placeholder="* Nazwa autora" reim appUpperFirst/>
                 <mat-error *ngIf="authorForm.name.hasError('required')">
                     {{ getErrorMessage('required') }}
                 </mat-error>
                 <mat-error *ngIf="authorForm.name.touched && authorForm.name.hasError('textValidator')">
                     {{ getErrorMessage('lettersOnly') }}
                 </mat-error>
-                <mat-error *ngIf="authorForm.name.touched && authorForm.name.hasError('maxLength')">
+                <mat-error *ngIf="authorForm.name.touched && authorForm.name.hasError('maxlength')">
                     {{ getErrorMessage('maxlength') }}
                 </mat-error>
             </mat-form-field>
+        </div>
+    </div>
+    <div fxLayout="row" class="form-btn">
+        <div fxFlex="100%">
+            <button mat-raised-button class="right" [disabled]="!authorForm.form.valid" (click)="writeData()" color="primary">
+                Zapisz
+            </button>
         </div>
     </div>
 </div>

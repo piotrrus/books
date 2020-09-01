@@ -21,12 +21,12 @@ export class BookGenresService implements IDataService {
     return this.apiService.get(path + '/' + id);
   }
 
-  public update(id: number): Observable<any> {
-    return this.apiService.get(path + '/update/' + id);
+  public update(id: number, data): Observable<any> {
+    return this.apiService.post(path + '/update/' + id, data);
   }
 
   public add(data): Observable<any> {
-    return this.apiService.get(path + '/add/' + data);
+    return this.apiService.post(path + '/create/', data);
   }
 
   public delete(id: number): Observable<any> {

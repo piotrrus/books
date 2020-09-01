@@ -6,6 +6,7 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\Interfaces\CrudInterface;
+use App\Request\BookRequest;
 
 class Books extends Model implements CrudInterface
 {
@@ -14,14 +15,26 @@ class Books extends Model implements CrudInterface
 
     protected $table    = 'books';
     protected $fillable = [
-        'author_id',
+        'id_author',
         'title'
     ];
 
     public function authors()
     {
-        return $this->belongsTo('App\Models\Authors', 'author_id', 'id')
-                ->select(array('id', 'name'));
+        return $this->belongsTo('App\Models\Authors', 'id_author', 'id')
+                ->select(['id', 'name']);
+    }
+
+    public function publishers()
+    {
+        return $this->belongsTo('App\Models\Publishers', 'id_publisher', 'id')
+                ->select(['id', 'name']);
+    }
+
+    public function genres()
+    {
+        return $this->belongsTo('App\Models\Genres', 'id_genre', 'id')
+                ->select(['id', 'name']);
     }
 
     /**
@@ -55,25 +68,26 @@ class Books extends Model implements CrudInterface
      */
     public static function search(int $id)
     {
-        return Books::find($id);
+        $table = self::getDBTable();
+        return $table->where('books.id', '=', $id)->get();
     }
 
     public static function searchBy($param, $method)
     {
-        $table = $this->getSearchMethod($param, $method);
-        return $table->leftJoin('authors', 'authors.id', '=',
-                'books.id_author')
-            ->leftJoin('rentals', 'rentals.id_book', '=', 'books.id')
-            ->get();
-        // return $table;
+        return $this->getSearchMethod($param, $method)
+                ->leftJoin('authors', 'authors.id', '=', 'books.id_author')
+                ->leftJoin('rentals', 'rentals.id_book', '=', 'books.id')
+                ->get();
     }
 
     private static function getDBTable()
     {
         return DB::table('books')
                 ->select(
-                    'books.id', 'title', 'id_author', 'publishers.name',
-                    'authors.name', 'rate', 'votes'
+                    'books.id', 'title', 'id_author', 'id_genre',
+                    'id_publisher', 'publishers.name as publisher',
+                    'authors.name as author', 'rate', 'votes',
+                    'genres.name as genre'
                 )
                 ->leftJoin('genres', 'genres.id', '=', 'books.id_genre')
                 ->leftJoin('authors', 'authors.id', '=', 'books.id_author')
@@ -104,7 +118,7 @@ class Books extends Model implements CrudInterface
     public static function searchByAuthor(string $author)
     {
         $table = self::getDBTable();
-        $table = self::queryForAuthor($table, $author);
+        $table = self::queryForAuthorName($table, $author);
         $table = $table->get();
         return $table;
     }
@@ -114,10 +128,14 @@ class Books extends Model implements CrudInterface
         return $table->where('books.title', 'LIKE', '%' . $param . '%');
     }
 
-    private static function queryForAuthor($table, $param)
+    private static function queryForAuthorName($table, $param)
     {
-        //dd($param);
         return $table->where('authors.name', 'LIKE', '%', $param . '%');
+    }
+
+    private static function queryForAuthorId($table, $param)
+    {
+        return $table->where('authors.id', '=', $param);
     }
 
     public static function mostPopular()
@@ -144,24 +162,25 @@ class Books extends Model implements CrudInterface
                 ->get();
     }
 
-    public static function insert(array $request)
+    public static function insert(array $input)
     {
         $books = new Books();
-        return self::saveIt($request, $books);
+        return self::saveIt($input, $books);
     }
 
-    public static function updateIt(int $id, array $request)
+    public static function updateIt(int $id, array $input)
     {
         $books = Books::find($id);
-        return self::saveIt($request, $books);
+        self::saveIt($input, $books);
     }
 
-    private static function saveIt($input, $model)
+    private static function saveIt(array $input, $model)
     {
-        $input = array_filter($request->all());
         if (!empty($input['title']) && !empty($input['id_author'])) {
-            $model->title     = $input['title'];
-            $model->id_author = $input['id_author'];
+            $model->title        = trim($input['title']);
+            $model->id_author    = $input['id_author'];
+            $model->id_publisher = $input['id_publisher'];
+            $model->id_genre     = $input['id_genre'];
             $model->save();
         } else {
             return true;

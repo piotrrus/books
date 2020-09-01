@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+    <div [ngSwitch]="formName">
+        <ng-container *ngSwitchCase="'book'" ?>
+            <app-book-form [formData]="formData"></app-book-form>
+        </ng-container>
+        <ng-container *ngSwitchCase="'author'" ?>
+            <app-author-form [formData]="formData"></app-author-form>
+        </ng-container>
+        <ng-container *ngSwitchCase="'publisher'" ?>
+            <app-publishers-form [formData]="formData"></app-publishers-form>
+        </ng-container>
+        <ng-container *ngSwitchCase="'genre'" ?>
+            <app-genre-form [formData]="formData"></app-genre-form>
+        </ng-container>
+    </div>
+</div>

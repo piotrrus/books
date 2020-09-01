@@ -27,7 +27,7 @@ export class RestApiService {
   }
 
   public post(url: string, params: any): Observable<any> {
-    // console.log(restPath + url, params);
+    console.log(restPath + url, params);
     return this.http.post<any>(`${restPath}${url}`, params)
       .pipe(catchError(this.handleError));
   }

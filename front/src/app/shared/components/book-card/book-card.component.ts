@@ -9,7 +9,7 @@ import { BookModel } from '../../models/book.model';
 export class BookCardComponent implements OnInit {
 
   @Input() public bookData: BookModel;
-  @Output() public bookId = new EventEmitter<number>();
+  @Output() public bookChosen = new EventEmitter<number>();
 
   constructor() { }
 
@@ -17,8 +17,7 @@ export class BookCardComponent implements OnInit {
   }
 
   public getBookDetails(id: number) {
-    console.log(id);
-    this.bookId.emit(id);
+    this.bookChosen.emit(id);
   }
 
 
