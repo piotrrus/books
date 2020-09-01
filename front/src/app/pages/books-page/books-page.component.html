@@ -18,8 +18,8 @@
     <tbody>
         <tr *ngFor="let book of tableData ">
             <td>
-                <a href="javascript:void(0)" (click)="bookDetails(book.id)" title="pokaż szczegóły">
-                  {{ book.title }}
+                <a routerLink="/book/show/{{ book.id }} " class="table-link " title="pokaż szczegóły ">
+                   {{book.title}}
                 </a>
             </td>
             <td>
