@@ -52,7 +52,6 @@ export class PublishersFormComponent extends BaseComponent implements OnInit, On
 
     if (this.publisherForm.form.valid) {
       const formData = this.publisherForm.form.getRawValue();
-      console.log(formData);
       if (this.publisherId) {
         this.publishersService.update(this.publisherId, formData).pipe(
           tap(
@@ -80,10 +79,10 @@ export class PublishersFormComponent extends BaseComponent implements OnInit, On
   showMessage(mode) {
     if (mode === dbOptions.ADD) {
       console.log('added', mode);
-      this.toastr.info('New author has been added');
+      // this.toastr.info('New author has been added');
     } else if (mode === dbOptions.UPDATE) {
       console.log('updated', mode);
-      this.toastr.info('The author data has been modified');
+      // this.toastr.info('The author data has been modified');
     }
   }
 
