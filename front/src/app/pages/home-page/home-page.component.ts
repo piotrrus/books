@@ -3,6 +3,7 @@ import { AuthorsService, BooksService, BookGenresService, PublishersService } fr
 import { tap } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 import { BookModel } from 'src/app/shared/models/book.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -22,7 +23,8 @@ export class HomePageComponent implements OnInit {
     private authorsService: AuthorsService,
     private booksService: BooksService,
     private bookGenresService: BookGenresService,
-    private publishersService: PublishersService
+    private publishersService: PublishersService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -62,6 +64,11 @@ export class HomePageComponent implements OnInit {
     //     || ((d.email !== null) ? d.email.toLowerCase().indexOf(val) !== -1 || !val : '')
     //     || ((d.phone !== null) ? d.phone.toLowerCase().indexOf(val) !== -1 || !val : '')
     //   );
+  }
+
+  public onBookClicked($event) {
+    console.log($event);
+    this.router.navigate(['/book/' + $event]);
   }
 
 }
