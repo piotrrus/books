@@ -54,7 +54,6 @@ export class GenreFormComponent extends BaseComponent implements OnInit, OnChang
 
     if (this.genreForm.form.valid) {
       const formData = this.genreForm.form.getRawValue();
-      console.log(formData);
       if (this.genreId) {
         this.bookGenresService.update(this.genreId, formData).pipe(
           tap(
@@ -82,10 +81,10 @@ export class GenreFormComponent extends BaseComponent implements OnInit, OnChang
   showMessage(mode) {
     if (mode === dbOptions.ADD) {
       console.log('added', mode);
-      this.toastr.info('New author has been added');
+      // this.toastr.info('New author has been added');
     } else if (mode === dbOptions.UPDATE) {
       console.log('updated', mode);
-      this.toastr.info('The author data has been modified');
+      // this.toastr.info('The author data has been modified');
     }
   }
 
