@@ -26,7 +26,7 @@ export class PublishersService implements IDataService {
   }
 
   public add(data): Observable<any> {
-    return this.apiService.post('authors/add/', data);
+    return this.apiService.post('authors/create/', data);
   }
 
   public delete(id: number): Observable<any> {
