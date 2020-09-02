@@ -29,6 +29,6 @@ php artisan migrate
 
 php artisan db:seed
 
-
+Database can also be imported via provided sql file.
 
 
