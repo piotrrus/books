@@ -117,9 +117,11 @@ export class BookFormComponent extends BaseComponent implements OnInit, OnChange
 
   checkIfSuccess(data, mode) {
     if (mode === dbOptions.ADD) {
-      console.log('added', mode);
+      //console.log('added', mode);
+      this.toastr.info('New book has been added');
     } else if (mode === dbOptions.UPDATE) {
-      console.log('updated', mode);
+      // console.log('updated', mode);
+      this.toastr.info('The book data has been modified');
     }
   }
 
