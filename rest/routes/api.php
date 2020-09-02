@@ -29,7 +29,11 @@ Route::get('books/title/{title}', 'Api\BooksController@title');
 Route::get('books/author/{author}', 'Api\BooksController@author');
 
 Route::get('genres', 'Api\GenresController@index');
+Route::get('genres/update/{id}', 'Api\GenresController@update');
+Route::get('genres/store', 'Api\GenresController@update');
 Route::get('publishers', 'Api\PublishersController@index');
+Route::get('publishers/update/{id}', 'Api\PublishersController@update');
+Route::get('publishers/store', 'Api\PublishersController@store');
 
 Route::get('popular', 'Api\BooksController@mostPopular');
 Route::get('rated', 'Api\BooksController@rated');
