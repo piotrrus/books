@@ -79,11 +79,11 @@ export class AuthorFormComponent extends BaseComponent implements OnInit, OnChan
 
   showMessage(mode) {
     if (mode === dbOptions.ADD) {
-      console.log('added', mode);
-      // this.toastr.info('New author has been added');
+      // console.log('added', mode);
+      this.toastr.info('New author has been added');
     } else if (mode === dbOptions.UPDATE) {
-      console.log('updated', mode);
-      // this.toastr.info('The author data has been modified');
+      // console.log('updated', mode);
+      this.toastr.info('The author data has been modified');
     }
   }
 
